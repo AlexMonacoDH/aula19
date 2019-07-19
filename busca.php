@@ -49,7 +49,7 @@
 		foreach($filmesFiltrados as $i => $f){ ?>
 			<article>
 				<a href="filme.php<?= $i ?>">
-					<img src="./assets/img/cartazes/cartaz-<?= $i ?>.png" alt="Nome do Filme">
+					<img src="./assets/img/cartazes/cartaz-<?= $i ?>.png" alt="<?= $f['busca'] ?>">
 					<span>Ver +</span>
 				</a>
 			</article>
