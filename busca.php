@@ -6,15 +6,15 @@
 
 	// Lendo superglobal para variável
 	$trecho = $_GET['trecho'];
-
+	
 	function contemNoTitulo($filme){
 		global $trecho;		
 		return stripos($filme['titulo'],$trecho) > -1;
 	}
-
+	
 	$filmesFiltrados = array_filter($filmes,'contemNoTitulo');
-
-?>
+	
+	?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -32,68 +32,28 @@
 <body>
 	<nav>
 		<ul>
-			<li><a href="#">Gênero 1</a></li>
-			<li><a href="#">Gênero 2</a></li>
-			<li><a href="#">Gênero 3</a></li>
-			<li><a href="#">Gênero 4</a></li>
-			<li><a href="#">Gênero 5</a></li>
-			<li><a href="#">Gênero 6</a></li>
+		<?php
+				foreach($generos as $g){
+					echo('<li><a href="#">'.$g.'</a></li>');
+				}
+				?>
 		</ul>
-		<form>
+		<form method="GET" action="busca.php">
 			<input type="text" name="trecho"><button type="submit">Buscar</button>
 		</form>
 	</nav>
 	
 	<main>
 		<section>
+		<?php 
+		foreach($filmesFiltrados as $i => $f){ ?>
 			<article>
-				<a href="filme.php">
-					<img src="./assets/img/cartazes/cartaz-0.png" alt="Nome do Filme">
+				<a href="filme.php<?= $i ?>">
+					<img src="./assets/img/cartazes/cartaz-<?= $i ?>.png" alt="Nome do Filme">
 					<span>Ver +</span>
 				</a>
 			</article>
-			<article>
-				<a href="filme.php">
-					<img src="./assets/img/cartazes/cartaz-0.png" alt="Nome do Filme">
-					<span>Ver +</span>
-				</a>
-			</article>
-			<article>
-				<a href="filme.php">
-					<img src="./assets/img/cartazes/cartaz-0.png" alt="Nome do Filme">
-					<span>Ver +</span>
-				</a>
-			</article>
-			<article>
-				<a href="filme.php">
-					<img src="./assets/img/cartazes/cartaz-0.png" alt="Nome do Filme">
-					<span>Ver +</span>
-				</a>
-			</article>
-			<article>
-				<a href="filme.php">
-					<img src="./assets/img/cartazes/cartaz-0.png" alt="Nome do Filme">
-					<span>Ver +</span>
-				</a>
-			</article>
-			<article>
-				<a href="filme.php">
-					<img src="./assets/img/cartazes/cartaz-0.png" alt="Nome do Filme">
-					<span>Ver +</span>
-				</a>
-			</article>
-			<article>
-				<a href="filme.php">
-					<img src="./assets/img/cartazes/cartaz-0.png" alt="Nome do Filme">
-					<span>Ver +</span>
-				</a>
-			</article>
-			<article>
-				<a href="filme.php">
-					<img src="./assets/img/cartazes/cartaz-0.png" alt="Nome do Filme">
-					<span>Ver +</span>
-				</a>
-			</article>
+			<?php } ?>
 		</section>
 	</main>
 </body>
